@@ -1,0 +1,14 @@
+.sidebar {
+  border: 1px solid black;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (max-width:660px) {
+  .some {
+    flex-direction: column;
+  }
+}

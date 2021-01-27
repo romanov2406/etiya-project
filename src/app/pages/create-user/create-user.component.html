@@ -1,0 +1,95 @@
+<form action="" class="mt-4 ml-2 mr-2" [formGroup]="userForm">
+  <div class="form1" *ngIf="!isNext">
+    <label for="">Choose Foto</label>
+    <input type="file" #file (change)="uploadFile($event,file)">
+    <br>
+    <img [src]="userImage" alt="" style="width: 100px;">
+    <button class="btn btn-success" (click)="deleteImage()" (click)="file.value = ''">delete image</button>
+    <br>
+    <label for="">Name</label>
+    <input type="text" class="form-control" formControlName="firstName" name="firstName" placeholder="Username"
+      aria-label="Username"
+      [ngStyle]="{border:userForm.controls.firstName.status === 'INVALID' && userForm.controls.firstName.touched? '1px solid red' :'1px solid green' }">
+
+
+    <label for="">Last name</label>
+    <input type="text" class="form-control" formControlName="lastName" name="lastName" placeholder="Last name"
+      aria-label="LastName"
+      [ngStyle]="{border:userForm.controls.lastName.status === 'INVALID' && userForm.controls.lastName.touched? '1px solid red' :'1px solid green' }">
+
+
+    <label for="">Surrname</label>
+    <input type="text" class="form-control" formControlName="userName" name="userName" placeholder="Surrname"
+      aria-label="Surrname"
+      [ngStyle]="{border:userForm.controls.userName.status === 'INVALID' && userForm.controls.userName.touched? '1px solid red' :'1px solid green' }">
+
+
+    <label for="">Phone</label>
+    <input type="text" class="form-control" formControlName="phone" name="phone" placeholder="Phone" aria-label="Phone"
+      [ngStyle]="{border:userForm.controls.phone.status === 'INVALID' && userForm.controls.phone.touched? '1px solid red' :'1px solid green' }">
+
+
+
+    <label for="">Email</label>
+    <input type="text" class="form-control" formControlName="email" name="email" placeholder="Email" aria-label="Email"
+      [ngStyle]="{border:userForm.controls.email.status === 'INVALID' && userForm.controls.email.touched? '1px solid red' :'1px solid green' }">
+
+
+    <div class="d-flex mt-2">
+      <div class="mr-2" style="width: 50%">
+
+        <label for="">Password:</label>
+        <input type="text" formControlName="password" name="password" class="form-control" placeholder="possword"
+          aria-label="password"
+          [ngStyle]="{border:userForm.controls.password.status === 'INVALID' && userForm.controls.password.touched? '1px solid red' :'1px solid green' }">
+      </div>
+
+      <div style="width: 50%">
+
+        <label for="">Password:</label>
+        <input type="text" formControlName="password" name="password" class="form-control" placeholder="password"
+          aria-label="password"
+          [ngStyle]="{border:userForm.controls.password.status === 'INVALID' && userForm.controls.password.touched? '1px solid red' :'1px solid green' }">
+      </div>
+    </div>
+    <button class="mt-2" mat-raised-button color="primary" (click)="isNext = true">Next</button>
+  </div>
+
+
+  <div class="form2" *ngIf="isNext" style="width: 500px;">
+    <select #addressSelect class="form-select" aria-label="Default select example" (change)="valueOfSelect(addressSelect.value,false)">
+      <option selected>Address Type</option>
+      <option value="Billing Address">Billing Address </option>
+      <option value="Shipment Address">Shipment Address </option>
+      <option value="Home Address">Home Address</option>
+    </select>
+    <br>
+    <hr>
+    <label for="">address</label>
+    <input type="text" formControlName="address" name="address" class="form-control" placeholder="Last name"
+      aria-label="LastName">
+    <label for="">City</label>
+    <input type="text" formControlName="city" name="city" class="form-control" placeholder="Surrname"
+      aria-label="Surrname">
+    <select #select class="form-select mt-4" aria-label="Default select example" (change)="valueOfSelect(select.value,true)">
+      <option selected>Country Choose...</option>
+      <option [value]="country.name" *ngFor="let country of listOfCountries">{{country.name}}</option>
+    </select>
+    <br>
+    <hr>
+    <label for="">Postal Code</label>
+    <input type="text" formControlName="postalCode" name="postalCode" class="form-control" placeholder="Email"
+      aria-label="Email">
+
+    <div *ngIf="isEmail" class="mt-2">
+      <input type="text" name="postalCode" class="form-control" placeholder="Other Address" aria-label="Email">
+    </div>
+
+    <button class="btn btn-danger mt-2" *ngIf="!isEmail" (click)="isEmail ?isEmail = false:isEmail = true">+
+      Address</button>
+    <br>
+    <button class="mt-2 mr-2" mat-raised-button color="primary" (click)="isNext = false">Previous</button>
+    <button class="mt-2" mat-raised-button color="primary" [disabled]="userForm.status === 'INVALID' ? true : false"
+      (click)="registration()" (click)="file.value = ''">Next</button>
+  </div>
+</form>

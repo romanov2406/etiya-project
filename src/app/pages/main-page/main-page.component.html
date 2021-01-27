@@ -1,0 +1,77 @@
+<!-- <div class="container d-flex flex-column justify-content-center mt-4" style="margin: 0 auto;">
+ 
+
+    <table class="example-full-width" cellspacing="0">
+      
+    <button class="mr-2" mat-raised-button color="warn">clear</button>
+    <button mat-raised-button color="primary">Find</button>
+
+</div> -->
+<div class="container-fluid mt-4">
+  <input type="text" [(ngModel)]="search"  #searchValue class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+
+  <div>
+    <button class="mt-2 mb-2" class="mr-2" mat-raised-button color="warn">clear</button>
+    <button class="mt-2 mb-2" mat-raised-button color="primary">Find</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">firstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Addres-Type</th>
+        <th scope="col">Country</th>
+        <th scope="col">City</th>
+        <th scope="col">Address</th>
+        <th scope="col">phone</th>
+        <th scope="col">edit</th>
+        <th scope="col">delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let user of users|search:search">
+        <th scope="row">1</th>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.userName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.addressType}}</td>
+        <td>{{user.country}}</td>
+        <td>{{user.city}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.phone}}</td>
+        <td><button class="btn btn-warning" (click)="openModal(template)" (click)="edit(user,user.id)">Update</button></td>
+        <td><button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" [(ngModel)]="firstName" class="form-control mb-2" placeholder="firstName" aria-label="firstName" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="lastName" class="form-control mb-2" placeholder="lastName" aria-label="lastName" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="userName" class="form-control mb-2" placeholder="userName" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="phone" class="form-control mb-2" placeholder="phone" aria-label="phone" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="email" class="form-control mb-2" placeholder="email" aria-label="email" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="addressType" class="form-control mb-2" placeholder="addressType" aria-label="addressType" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="country" class="form-control mb-2" placeholder="country" aria-label="country" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="city" class="form-control mb-2" placeholder="city" aria-label="country" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="postal" class="form-control mb-2" placeholder="postal" aria-label="postalCode" aria-describedby="basic-addon1">
+    <input type="text" [(ngModel)]="address" class="form-control mb-2" placeholder="address" aria-label="address" aria-describedby="basic-addon1">
+    <button class="btn btn-success mt-2" (click)="saveUser()" (click)="modalRef.hide()">Save</button>
+  </div>
+</ng-template>
+
