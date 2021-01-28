@@ -11,5 +11,7 @@ export class MainContentComponent implements OnInit {
   constructor(private ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
+    this.ngxService.start();
+      this.ngxService.stop();
   }
 }

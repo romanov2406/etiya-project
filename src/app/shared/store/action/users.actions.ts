@@ -8,5 +8,15 @@ export class GetUsers {
 export class CreateUser {
     static readonly desc = 'create user';
     static readonly type = '[CreateUser] create user';
-    constructor(public payload: IUser){}
+    constructor(public payload: IUser) { }
+}
+
+export class Update {
+    public static readonly type = '[Users] Update';
+    constructor(public readonly id: string, public readonly changes: Partial<IUser>) { }
+}
+
+export class DeleteUser {
+    public static readonly type = '[Users] Update';
+    constructor(public readonly id: string) { }
 }

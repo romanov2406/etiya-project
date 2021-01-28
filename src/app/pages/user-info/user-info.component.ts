@@ -18,11 +18,10 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStaticUsers();
-    this.users$.subscribe(el => console.log(this.users = el));
+    this.users$.subscribe(el => this.users = el);
   }
 
   getStaticUsers(): void {
     this.users = JSON.parse(localStorage.getItem('users'));
-    console.log(this.users);
   }
 }

@@ -53,17 +53,22 @@ export class AuthService {
     }).catch(err => console.log(err))
   };
 
-  deleteFireCloudUser(id: string): void {
-    this.categoriesRef.doc(id).delete();
-  }
+  // deleteFireCloudUser(id: string): void {
+  //   this.categoriesRef.doc(id).delete();
+  // }
 
-  updateFireCloudUser(id: string, user: IUser): void {
-    this.categoriesRef.doc(id).update({ ...user })
-  }
+  // updateFireCloudUser(id: string, user: IUser): void {
+  // this.categoriesRef.doc(id).update({ ...user }).then(
+  //   data => console.log(data)
 
-  getFireCloudUsers(): AngularFirestoreCollection<IUser> {
-    return this.categoriesRef;
-  }
+  // )
+  //   console.log('hello');
+
+  // }
+
+  // getFireCloudUsers(): AngularFirestoreCollection<IUser> {
+  //   return this.categoriesRef;
+  // }
 
 
   signOut(): void {
@@ -75,7 +80,6 @@ export class AuthService {
       })
       .catch(err => console.log(err));
   }
-
   signUp(
     image: string,
     firstName: string,
@@ -88,7 +92,8 @@ export class AuthService {
     address: string,
     city: string,
     country: string,
-    postalCode: string): Promise<any> {
+    postalCode: string
+  ): Promise<any> {
 
     return this.auth.createUserWithEmailAndPassword(email, password)
       .then(
@@ -106,12 +111,10 @@ export class AuthService {
             country,
             postalCode
           );
-          console.log(NUW_USER);
           this.db.collection('users').add(Object.assign({}, NUW_USER)).then(
             collection => collection.get().then(
               userCredentional => {
                 this.toastr.success('succes');
-                console.log(userCredentional.data());
               }
             )
           )

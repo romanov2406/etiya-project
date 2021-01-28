@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent,canActivate:[ProfileGuard] },
   {
     path: 'main', component: MainContentComponent, children: [
-      { path: 'main-page', component: MainPageComponent, canActivate:[ProfileGuard] },
+      { path: 'main-page', component: MainPageComponent },
       { path: 'create-user', component: CreateUserComponent },
-      { path: 'user-info', component: UserInfoComponent, canActivate:[ProfileGuard] }
+      { path: 'user-info', component: UserInfoComponent }
     ]
   }
 ];

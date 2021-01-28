@@ -1,4 +1,4 @@
-import { GetUsers } from './../../shared/store/action/users.actions';
+import { GetUsers, Update, DeleteUser } from './../../shared/store/action/users.actions';
 import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
 import { AuthService } from './../../shared/services/auth.service';
 import { IUser } from './../../shared/interfaces/user.interface';
@@ -35,19 +35,21 @@ users$: Observable<any>;
   city: string;
   postal: string;
   address: string;
-  constructor(private authService: AuthService, private modalService: BsModalService, private store: Store,private cdRef: ChangeDetectorRef) { }
+  constructor(
+    private authService: AuthService,
+     private modalService: BsModalService,
+      private store: Store,
+      private cdRef: ChangeDetectorRef
+      ) { }
 
   ngOnInit(): void {
     this.getStaticUsers();
-    this.users$.subscribe(el => console.log(this.users = el));
-    this.cdRef.detectChanges()
-
-    
+    this.users$.subscribe(el => this.users = el);
+    this.cdRef.detectChanges();
   }
 
   getStaticUsers(): void {
-    this.store.dispatch(new GetUsers()).pipe(take(1), pluck('UsersState', 'users')).subscribe(el => console.log(this.users = el));
-    // this.users$.subscribe(el => this.user = el);
+    this.store.dispatch(new GetUsers()).pipe(take(1))
   }
 
   saveUser(): void {
@@ -61,7 +63,8 @@ users$: Observable<any>;
     this.user.city = this.city
     this.user.postalCode = this.postal
     this.user.address = this.address
-    this.authService.updateFireCloudUser(this.id, this.user);
+    
+    this.store.dispatch(new Update(this.id, this.user)).pipe(take(1));
   }
 
   edit(user: IUser, id: string): void {
@@ -80,7 +83,8 @@ users$: Observable<any>;
   }
 
   deleteUser(uid: string): void {
-    this.authService.deleteFireCloudUser(uid);
+    // this.authService.deleteFireCloudUser(uid);
+    this.store.dispatch(new DeleteUser(uid))
     this.getStaticUsers();
   }
 

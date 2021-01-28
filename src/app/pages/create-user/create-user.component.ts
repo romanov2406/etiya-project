@@ -35,8 +35,6 @@ export class CreateUserComponent implements OnInit {
 
   valueOfSelect(value, status): void {
     status ? this.addressType = value : this.country = value;
-    console.log(this.addressType);
-    console.log(this.country);
 
   }
 
