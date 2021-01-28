@@ -1,0 +1,13 @@
+
+<h1>Profile</h1>
+<div class="container d-flex" style="flex-wrap: wrap;">
+    <div class="card" style="width: 30rem; height: auto;">
+        <img [src]="user?.image" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{user?.firstName}}</h5>
+          <h5 class="card-title">{{user?.lastName}}</h5>
+          <p class="card-text">{{user?.address}}</p>
+        </div>
+        <button class="btn btn-warning text-align-center" (click)="signOut()">Sign Out</button>
+      </div>
+</div>

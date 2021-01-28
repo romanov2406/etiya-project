@@ -25,6 +25,7 @@ export class UsersState {
     
     // ініціалізація 
     constructor(private userFS: UsersFirestoreService, private ngxsFirestoreConnect: NgxsFirestoreConnect) { }
+    
     ngxsOnInit() {
         this.ngxsFirestoreConnect.connect(GetUsers, { 
             to: () => this.userFS.collection$(),

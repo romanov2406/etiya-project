@@ -34,6 +34,8 @@ import { SearchPipe } from './shared/pipes/search.pipe';
 import { NgxsModule, State } from '@ngxs/store';
 import { UsersState } from './shared/store/state/users.state';
 import { NgxsFirestoreModule } from '@ngxs-labs/firestore-plugin';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 
 
@@ -48,7 +50,8 @@ import { NgxsFirestoreModule } from '@ngxs-labs/firestore-plugin';
     FooterComponent,
     UserInfoComponent,
     CreateUserComponent,
-    SearchPipe
+    SearchPipe,
+    ProfileComponent
   ],
   imports: [
     NgxsModule.forRoot([UsersState]),
@@ -71,7 +74,8 @@ import { NgxsFirestoreModule } from '@ngxs-labs/firestore-plugin';
     MatSidenavModule,
     ModalModule,
     NgxsModule.forRoot([UsersState]),
-    NgxsFirestoreModule.forRoot()
+    NgxsFirestoreModule.forRoot(),
+    NgxUiLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

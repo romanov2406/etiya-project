@@ -45,14 +45,14 @@ export class CreateUserComponent implements OnInit {
       firstName: new FormControl({ value: '', disabled: false }, [...this.minMaxLength, Validators.pattern(this.regExp)]),
       lastName: new FormControl({ value: '', disabled: false }, [...this.minMaxLength, Validators.pattern(this.regExp)]),
       userName: new FormControl({ value: '', disabled: false }, [...this.minMaxLength, Validators.pattern(this.regExp)]),
-      phone: new FormControl({ value: '', disabled: false }, [...this.minMaxLength, Validators.pattern(this.regExp)]),
-      email: new FormControl({ value: '', disabled: false }, [...this.minMaxLength, Validators.pattern(this.regExp)]),
-      password: new FormControl({ value: '', disabled: false }, [...this.minMaxLength,Validators.pattern(this.regExp)]),
+      phone: new FormControl({ value: '', disabled: false }, [...this.minMaxLength]),
+      email: new FormControl({ value: '', disabled: false }),
+      password: new FormControl({ value: '', disabled: false }),
       addressType: new FormControl('home'),
       address: new FormControl({ value: '', disabled: false }, [Validators.maxLength(15), Validators.pattern(this.regExp)]),
       city: new FormControl({ value: '', disabled: false }, [Validators.maxLength(15), Validators.pattern(this.regExp)]),
       country: new FormControl('ukraine'),
-      postalCode: new FormControl({ value: '', disabled: false }, [Validators.maxLength(15), Validators.pattern(this.regExp)]),
+      postalCode: new FormControl({ value: '', disabled: false }),
     }); 
   }
 
@@ -73,7 +73,7 @@ export class CreateUserComponent implements OnInit {
       this.userForm.controls.postalCode.value
     )
     this.userForm.reset();
-    this.deleteImage();
+    // this.deleteImage();
   }
 
   uploadFile(event): void {

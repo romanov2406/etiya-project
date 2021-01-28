@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgxUiLoaderService } from "ngx-ui-loader"; 
+import { OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proto';
-
-
-  main(): void{
-    console.log('hello');
+  
+  constructor(){}
+  ngOnInit(): void {
   }
 }
